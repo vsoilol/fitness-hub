@@ -5,7 +5,6 @@ backend/dist
 fronted/dist
 dist
 backend/package-lock.json
-frontend/package-lock.json
 
 backend/.env
 docker-compose/.env
