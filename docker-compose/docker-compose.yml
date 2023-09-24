@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  databasemongo:
+    image: mongo:6.0
+    restart: unless-stopped
+    ports:
+      - 27018:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DATABASE_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DATABASE_PASSWORD}
+    volumes:
+      - mongodbdata:/data/db
+
+  backendapi:
+    image: vladsokol/fitness-hub-backend
+    restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
+    depends_on:
+      - databasemongo
+    build:
+      context: ../backend
+      dockerfile: ./Dockerfile
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      TG_BOT_CLIENT_TOKEN: ${TG_BOT_CLIENT_TOKEN}
+      TG_BOT_TOKEN: ${TG_BOT_TOKEN}
+      DATABASE_URI: mongodb://databasemongo:27017
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USERNAME}
+      DATABASE_PASS: ${DATABASE_PASSWORD}
+      BACKEND_URL: ${BASE_URL}
+
+  frontend:
+    image: vladsokol/fitness-hub-frontend
+    build:
+      context: ../frontend
+      dockerfile: ./Dockerfile
+      args:
+        VUE_APP_BACKEND_URL: ${BASE_URL}
+        VUE_APP_BACKEND_URL_API: ${VUE_APP_BACKEND_URL_API}
+    volumes:
+      - /app/node_modules
+
+  nginx:
+    image: vladsokol/fitness-hub-proxy
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - frontend
+    ports:
+      - "80:80"
+
+volumes:
+  mongodbdata:
