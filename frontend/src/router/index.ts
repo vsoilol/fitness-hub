@@ -339,7 +339,7 @@ const router = new VueRouter({
           component: () => import('@/views/community/Community.vue'),
           meta: {
             title: prefix + 'Новости',
-            hero: 'Последние новости'
+            hero: 'Новости'
           }
         },
         {
@@ -347,8 +347,8 @@ const router = new VueRouter({
           name: 'create-post',
           component: () => import('@/views/community/CreatePost.vue'),
           meta: {
-            title: prefix + 'Добавить почту',
-            hero: 'Добавить почту',
+            title: prefix + 'Добавить новость',
+            hero: 'Добавить новость',
             needsSignIn: true,
             groups: ['Admin', 'Moderator']
           }
@@ -618,8 +618,8 @@ const router = new VueRouter({
           name: 'training',
           component: () => import('@/views/training/Training.vue'),
           meta: {
-            title: prefix + 'Спорт',
-            hero: 'Спорт'
+            title: prefix + 'Тренировки',
+            hero: 'Тренировки'
           }
         },
         {
@@ -627,8 +627,8 @@ const router = new VueRouter({
           name: 'muscle-guide',
           component: () => import('@/views/training/Guide.vue'),
           meta: {
-            title: prefix + 'Muskelguide',
-            hero: 'Muskelguide'
+            title: prefix + 'Тренировки',
+            hero: 'Тренировки'
           }
         },
         {

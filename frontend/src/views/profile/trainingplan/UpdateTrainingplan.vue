@@ -41,7 +41,7 @@
               background="white"
               variant="opaque"
               icon="plus"
-              name="erstellen"
+              name="создать"
               @click="$oFS('create-workout')"
             />
           </tl-flow>
@@ -184,8 +184,9 @@ export default class UpdateTrainingplan extends Vue {
 
   public getWorkoutSubtitle(w: IWorkout): string {
     const { length } = w.exercises;
-    if (length === 1) return 'Eine Übung';
-    return length + ' Übungen';
+    if (length === 1) return length + ' Упражнение';
+    if (length >= 2 && length <= 4) return length + ' Упражнения';
+    return length + ' Упражнений';
   }
 
   public async updateDay(id: string): Promise<void> {

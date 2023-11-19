@@ -31,9 +31,13 @@ export class TrainingplanService {
    * @param userId author
    */
   public async getFullTrainingplan(userId: string): Promise<ITrainingplanFull> {
-    const trainingPlan = (await this.getTrainingplan(userId)) as ITrainingplan;
-    if (!trainingPlan) return undefined;
+    let trainingPlan = await this.getTrainingplan(userId);
 
+    if (!trainingPlan) {
+      trainingPlan = await this.trainingplanModel.create({
+        author: userId,
+      });
+    }
     const fullPlan: ITrainingplanFull = {
       _id: trainingPlan._id,
       author: trainingPlan.author,
@@ -60,8 +64,10 @@ export class TrainingplanService {
     const uniqueWorkouts = await this.workoutModel.find({
       _id: { $in: uniqueWorkoutIds.map((x) => new mongo.ObjectID(x)) },
     });
+
     uniqueWorkouts.forEach((x) => uniqueExerciseIds.push(...x.exercises));
     uniqueExerciseIds = [...new Set(uniqueExerciseIds)];
+
     const uniqueExercises = await this.exerciseModel.find({
       _id: { $in: uniqueExerciseIds.map((x) => new mongo.ObjectID(x)) },
     });

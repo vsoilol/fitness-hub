@@ -22,7 +22,7 @@
     <tc-navbar-item
       tfcolor="success"
       icon="gym"
-      name="Спорт"
+      name="Тренировки"
       routeName="training"
     />
     <tc-navbar-item

@@ -14,14 +14,14 @@
       />
       <tc-input
         :dark="$store.getters.darkmode"
-        title="Снимок"
+        title="Снимок (URL)"
         v-model="dto.thumbnail"
       />
     </tl-grid>
 
     <tc-textarea
       :dark="$store.getters.darkmode"
-      title="Текст*"
+      title="Текст"
       v-model="dto.text"
     />
 

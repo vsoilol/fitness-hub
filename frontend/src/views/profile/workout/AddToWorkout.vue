@@ -90,8 +90,9 @@ export default class AddToWorkout extends Vue {
 
   getSubtitle(workout: IWorkout): string {
     const { length } = workout.exercises;
-    if (length === 1) return length + ' Übung';
-    return length + ' Übungen';
+    if (length === 1) return length + ' Упражнение';
+    if (length >= 2 && length <= 4) return length + ' Упражнения';
+    return length + ' Упражнений';
   }
 
   public async useWorkout(w: IWorkout): Promise<void> {

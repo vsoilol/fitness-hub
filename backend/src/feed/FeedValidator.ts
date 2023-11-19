@@ -9,7 +9,7 @@ export class FeedValidator extends FormValidator {
 
     text = this.checkString(
       text,
-      'Bitte schreibe einen kurzen Text zu deinem Post',
+      'Пожалуйста, напишите короткий текст для новости',
       5,
     );
 

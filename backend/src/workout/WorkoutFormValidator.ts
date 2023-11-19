@@ -6,7 +6,7 @@ export class WorkoutFormValidator extends FormValidator {
     const { title } = dto;
     let { exercises } = dto;
 
-    this.checkString(title, 'Bitte gib einen Titel für dein Workout an');
+    this.checkString(title, 'Пожалуйста, укажите название тренировки');
     exercises = this.checkStringArray(
       exercises,
       'Dein Workout muss mindestens eine Übung beinhalten',

@@ -89,7 +89,10 @@ export default class TrainingplanDay extends Vue {
     const day = this.day;
     if (!day) return null;
     const { length } = day.exercises;
-    return length + ' Упражнение' + (length === 1 ? '' : 'en');
+
+    if (length === 1) return length + ' Упражнение';
+    if (length >= 2 && length <= 4) return length + ' Упражнения';
+    return length + ' Упражнений';
   }
 
   public async removeDay(): Promise<void> {

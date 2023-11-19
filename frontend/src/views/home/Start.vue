@@ -16,7 +16,7 @@
       <br />
       <tl-grid minWidth="100" gap="20">
         <FHPreview
-          title="Начало тренировок"
+          title="Начало тренировки"
           :height="110"
           @click="$oFS('training')"
         >
