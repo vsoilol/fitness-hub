@@ -16,7 +16,7 @@
         тренировок и питания, FitnessHub предоставляет цифровые и индивидуальные
         рекомендации по достижению личных целей в фитнесе.
       </p>
-
+      <!-- 
       <section :dark="$store.getters.darkmode">
         <div class="subtitle">Создавать, планировать, делиться</div>
         <div class="title">Тренировки</div>
@@ -131,7 +131,7 @@
           />
         </tl-grid>
         <div class="spacer" />
-      </section>
+      </section> -->
     </div>
   </div>
 </template>

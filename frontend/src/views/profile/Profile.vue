@@ -83,10 +83,10 @@
         </tc-list>
       </masonry>
 
-      <div class="footer" @click="copyID">
+      <!-- <div class="footer" @click="copyID">
         <div>User ID</div>
         <div>{{ $store.getters.user._id }}</div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

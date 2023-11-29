@@ -18,7 +18,7 @@
           </ul>
         </template>
         <template v-if="item.goodFor">
-          <h3>Хорошо для</h3>
+          <h3>Полезно для</h3>
           <ul>
             <li v-for="(i, j) in item.goodFor" :key="'g' + j">{{ i }}</li>
           </ul>

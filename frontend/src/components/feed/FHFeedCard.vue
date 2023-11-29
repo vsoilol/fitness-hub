@@ -18,11 +18,7 @@
           </div>
           <div class="time">{{ time }}</div>
         </div>
-        <tc-action
-          v-group.admin.moderator
-          v-if="user._id === fhBotId && $route.name === 'community'"
-          :dark="$store.getters.darkmode"
-        >
+        <tc-action v-group.admin.moderator :dark="$store.getters.darkmode">
           <tc-action-item
             alarm
             title="Редактировать"
@@ -111,15 +107,22 @@ export default class FHFeedCard extends Vue {
       return user;
     }
 
-    const loginUser = UserManagement.getUser();
+    // const loginUser = UserManagement.getUser();
 
-    if (loginUser) {
-      return {
-        _id: loginUser._id,
-        username: `${loginUser.familyName} ${loginUser.givenName}`,
-        avatar: loginUser.avatar
-      };
-    }
+    // console.log('Login user: ', loginUser !== null);
+
+    // if (
+    //   loginUser?._id &&
+    //   loginUser?.familyName &&
+    //   loginUser?.givenName &&
+    //   loginUser?.avatar
+    // ) {
+    //   return {
+    //     _id: loginUser._id,
+    //     username: `${loginUser.familyName} ${loginUser.givenName}`,
+    //     avatar: loginUser.avatar
+    //   };
+    // }
 
     return {
       _id: fhBotId,

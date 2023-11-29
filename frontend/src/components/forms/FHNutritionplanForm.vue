@@ -32,16 +32,12 @@
       <br />
       <br />
       <tc-segments :dark="$store.getters.darkmode" v-model="day">
-        <tc-segment-item
-          v-for="d in daynames"
-          :key="d"
-          :title="d.slice(0, 2)"
-        />
+        <tc-segment-item v-for="d in daysFull" :key="d.full" :title="d.short" />
       </tc-segments>
 
       <FHAppear>
         <div :key="day">
-          <h3>{{ daynames[day] }}</h3>
+          <h3>{{ daysFull[day].full }}</h3>
 
           <div class="day-time" v-for="dt in Object.keys(daytimes)" :key="dt">
             <tl-flow horizontal="space-between">
@@ -160,14 +156,14 @@ export default class FHNutritionplanForm extends Vue {
   public errorList = 'nutritionplan-form';
   public submitting = false;
   public plan: INutritionplan | null = null;
-  public daynames = [
-    'Понедельник',
-    'Вторник',
-    'Среда',
-    'Четверг',
-    'Пятница',
-    'Суббота',
-    'Воскресенье'
+  public daysFull = [
+    { full: 'Понедельник', short: 'Пн' },
+    { full: 'Вторник', short: 'Вт' },
+    { full: 'Среда', short: 'Ср' },
+    { full: 'Четверг', short: 'Чт' },
+    { full: 'Пятница', short: 'Пт' },
+    { full: 'Суббота', short: 'Сб' },
+    { full: 'Воскресенье', short: 'Вс' }
   ];
   public daytimes = {
     breakfast: 'Завтрак',
@@ -179,8 +175,8 @@ export default class FHNutritionplanForm extends Vue {
   mounted() {
     if (this.$route.query.day) {
       const day = this.$route.query.day as string;
-      this.daynames.forEach((d, i) => {
-        if (d.toLowerCase() === day.toLowerCase()) {
+      this.daysFull.forEach((d, i) => {
+        if (d.full.toLowerCase() === day.toLowerCase()) {
           this.day = i;
         }
       });
@@ -214,7 +210,7 @@ export default class FHNutritionplanForm extends Vue {
 
   getRecipe(daytime: daytime): IRecipe | null {
     if (!this.plan) return null;
-    const day = this.daynames[this.day].toLowerCase();
+    const day = this.daysFull[this.day].full.toLowerCase();
     for (const [key, value] of Object.entries(this.plan)) {
       if (key === day) {
         for (const [dt, r] of Object.entries(value)) {
@@ -229,7 +225,7 @@ export default class FHNutritionplanForm extends Vue {
 
   get snacks(): IRecipe[] {
     if (!this.plan) return [];
-    const day = this.daynames[this.day].toLowerCase();
+    const day = this.daysFull[this.day].full.toLowerCase();
     for (const [key, value] of Object.entries(this.plan)) {
       if (key === day) {
         for (const [dt, r] of Object.entries(value)) {
@@ -245,7 +241,7 @@ export default class FHNutritionplanForm extends Vue {
   public removeSnack(index: number) {
     if (!this.plan) return;
 
-    const day = this.daynames[this.day].toLowerCase();
+    const day = this.daysFull[this.day].full.toLowerCase();
     // eslint-disable-next-line
     (this.plan as any)[day].snacks.splice(index, 1);
   }
@@ -253,7 +249,7 @@ export default class FHNutritionplanForm extends Vue {
   public updateRecipe(daytime: daytime): void {
     this.$store.commit('nutritionplanForm', this.plan);
     openFullscreen('np-recipe-search', {
-      day: this.daynames[this.day].toLowerCase(),
+      day: this.daysFull[this.day].full.toLowerCase(),
       daytime
     });
   }

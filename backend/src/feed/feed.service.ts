@@ -18,8 +18,8 @@ import { IFeed } from './interfaces/IFeed.interface';
 import { Feed } from './schemas/Feed.schema';
 
 const VALID_REACTIONS = ['hot', 'like', 'strong', 'thumbsup', 'monkey'];
-const RECIPE_CREATE_TEXT = 'Ich habe ein neues Rezept veröffentlicht!';
-const EXERCISE_CREATE_TEXT = 'Ich habe eine neue Übung veröffentlicht!';
+const RECIPE_CREATE_TEXT = 'Я опубликовал новый рецепт!';
+const EXERCISE_CREATE_TEXT = 'Я опубликовал новое упражнение!';
 @Injectable()
 export class FeedService {
   constructor(
