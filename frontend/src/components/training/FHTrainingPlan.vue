@@ -12,7 +12,7 @@
         :selected="i === selected"
         @click="selected = i"
       >
-        <div class="day-name">{{ dayNames[i].substring(0, 2) }}</div>
+        <div class="day-name">{{ dayNames[i].short }}</div>
         <div class="day-date">{{ getDateInXDays(index) }}</div>
         <i class="ti-dot" v-if="hasExercises(i)" />
       </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { aDay, days } from '@/utils/constants';
+import { aDay, days, daysFull } from '@/utils/constants';
 import { Vue, Component } from 'vue-property-decorator';
 import FHAppear from '../FHAppear.vue';
 import FHTrainingplanDay from './FHTrainingplanDay.vue';
@@ -42,7 +42,7 @@ import { UserManagement } from '@/utils/UserManagement';
   }
 })
 export default class FHTrainingPlan extends Vue {
-  public dayNames = days;
+  public dayNames = daysFull;
   public selected = new Date().getDay();
 
   get days(): number[] {
