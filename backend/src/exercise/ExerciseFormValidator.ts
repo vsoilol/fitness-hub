@@ -35,8 +35,8 @@ export class ExerciseFormValidator extends FormValidator {
         this.throwEx('Bitte gib eine empfohlene Menge an Sets & Reps an');
       }
 
-      this.checkNumber(reps.min, 'Bitte gib eine minimale Anzahl an Wiederholungen an');
-      this.checkNumber(reps.max, 'Bitte gib eine maximale Anzahl an Wiederholungen an');
+      this.checkNumber(reps.min, 'Пожалуйста, введите минимальное количество повторений');
+      this.checkNumber(reps.max, 'Пожалуйста, введите максимальное количество повторений');
 
       this.checkNumber(sets.min, 'Bitte gib eine minimale Anzahl an Sätzen an');
       this.checkNumber(sets.max, 'Bitte gib eine maximale Anzahl an Sätzen an');

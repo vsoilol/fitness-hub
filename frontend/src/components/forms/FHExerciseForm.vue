@@ -75,7 +75,6 @@
             />
             <tc-input
               type="number"
-              :min="dto.sets.max"
               step="1"
               v-model="dto.sets.max"
               :dark="$store.getters.darkmode"
@@ -93,7 +92,6 @@
             />
             <tc-input
               type="number"
-              :min="dto.reps.max"
               step="1"
               v-model="dto.reps.max"
               :dark="$store.getters.darkmode"
@@ -123,7 +121,7 @@
           <tc-input
             :dark="$store.getters.darkmode"
             placeholder="Пример: 5 км"
-            v-model="dto.time"
+            v-model="dto.distance"
           />
         </div>
       </FHAppear>
@@ -388,6 +386,14 @@ export default class FHExeciseForm extends Vue {
   }
 
   public async createExercise(): Promise<void> {
+    this.dto.sets.min = Number(this.dto.sets.min);
+    this.dto.sets.max = Number(this.dto.sets.max);
+
+    this.dto.reps.min = Number(this.dto.reps.min);
+    this.dto.reps.max = Number(this.dto.reps.max);
+
+    this.dto.time = Number(this.dto.time);
+
     if (this.isSubmitting) return;
     this.isSubmitting = true;
     this.cleanDTO();
@@ -451,7 +457,7 @@ export default class FHExeciseForm extends Vue {
     if (statusCode && statusCode === 422 && message) {
       FHEventBus.$emit('fh-error-list-' + this.errorList, message);
     }
-    this.setGym();
+    //this.setGym();
     this.isSubmitting = false;
   }
 }
