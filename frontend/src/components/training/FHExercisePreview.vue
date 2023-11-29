@@ -103,7 +103,12 @@ export default class FHExercisePreview extends Vue {
 
   public cancelSubmission(): void {
     if (this.exercise) {
-      backend.delete('exercise/cancelSubmission/' + this.exercise._id);
+      backend
+        .delete('exercise/cancelSubmission/' + this.exercise._id)
+        .then(() => {
+          ExerciseManagement.loadCreated();
+          ExerciseManagement.loadSubmissions();
+        });
     }
   }
 }

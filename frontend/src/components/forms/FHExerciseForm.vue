@@ -203,7 +203,7 @@
       <tl-flow>
         <template v-if="mode === 'create'">
           <tc-button
-            name="Добавить упражение"
+            name="Добавить упражнение"
             tfbackground="success"
             :disabled="isSubmitting"
             @click="createExercise"
@@ -261,6 +261,7 @@ import { IExercise } from '@/utils/interfaces';
 import { NotificationManagement } from '@/utils/NotificationManagement';
 import { VariableManagement } from '@/utils/VariableManagement';
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { ExerciseManagement } from '@/utils/ExerciseManagement';
 
 @Component({
   components: {
@@ -453,6 +454,8 @@ export default class FHExeciseForm extends Vue {
   }
 
   private handleResponse(): void {
+    ExerciseManagement.loadCreated();
+    ExerciseManagement.loadSubmissions();
     this.$emit('close');
   }
 

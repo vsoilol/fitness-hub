@@ -63,8 +63,6 @@ export class ExerciseManagement {
   public static async loadSubmissions(): Promise<boolean> {
     const user = UserManagement.getUser();
     if (user && ['Admin', 'Moderator'].includes(user.group)) {
-      if (this.getSubmissions()) return true;
-
       const { data } = await backend.get('exercise/submissions');
       this.setSubmissions(data);
       return true;

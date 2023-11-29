@@ -6,7 +6,6 @@ import { AchievementService } from 'src/achievement/achievement.service';
 import { FeedService } from 'src/feed/feed.service';
 import { FHSocket } from 'src/FHSocket';
 import { Variable } from 'src/management/variables/schemas/Variable.schema';
-import { MessageService } from 'src/message/message.service';
 import { Message } from 'src/message/schemas/Message.schema';
 import { FHBot } from 'src/user/FHBot.user';
 import { IUser } from 'src/user/interfaces/IUser';
@@ -30,7 +29,6 @@ export class ExerciseService {
     @InjectModel(Message.name) private messageModel: Model<Message>,
     private readonly fhSocket: FHSocket,
     private readonly feedService: FeedService,
-    private readonly messageService: MessageService,
     private readonly achievementService: AchievementService,
   ) {}
 
@@ -324,13 +322,6 @@ export class ExerciseService {
       .to(exercise.author)
       .emit('exercise' + (removeLocaly ? '.remove' : ''), exercise);
 
-    if (accepted) {
-      await this.sendMessageAsFitnessHub(exercise.author, 'exercisePublish', {
-        id: exercise._id,
-        title: exercise.title,
-      });
-    }
-
     const users = await this.userModel.find({
       $or: [{ group: 'Moderator' }, { group: 'Admin' }],
     });
@@ -343,21 +334,6 @@ export class ExerciseService {
       'exerciseSubmission' + (removeSubmisison ? '.remove' : ''),
       exercise,
     );
-  }
-
-  /**
-   * sends a message [sender disguised as FitnessHub] to a User
-   * @param to
-   * @param type
-   * @param content
-   */
-  private async sendMessageAsFitnessHub(
-    to: string,
-    type = 'message',
-    // eslint-disable-next-line
-    content: any,
-  ): Promise<void> {
-    this.messageService.sendMessage(FHBot, to, JSON.stringify(content), type);
   }
 
   /**

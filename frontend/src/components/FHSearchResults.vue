@@ -15,7 +15,7 @@
             <p>Поиски, к сожалению, не были успешным</p>
           </tl-flow>
           <div v-else>
-            <FHHeading :subtitle="subtitle" :title="searchFor" />
+            <!-- <FHHeading :subtitle="subtitle" :title="searchFor" /> -->
             <masonry :cols="{ default: 3, 750: 2, 500: 1 }" gutter="20px">
               <template v-if="type && type === 'exercise'">
                 <FHExercisePreview

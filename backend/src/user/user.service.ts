@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Provider } from 'src/auth/auth.service';
-import { MessageService } from 'src/message/message.service';
 import { TgbotService } from 'src/tgbot/tgbot.service';
 import { FHBot } from './FHBot.user';
 import { IUser } from './interfaces/IUser';
@@ -13,7 +12,6 @@ import { User } from './schemas/User.schema';
 export class UserService {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
-    private readonly messageService: MessageService,
     private readonly tgbotService: TgbotService,
   ) {}
 
@@ -57,12 +55,6 @@ export class UserService {
       this.tgbotService.sendMessage(
         `Ein neuer User hat sich angemeldet!
       <b>Name</b> ${((user.toJSON() as unknown) as IUserInfo).username}`,
-      );
-
-      this.messageService.sendMessage(
-        FHBot,
-        user._id,
-        'Willkommen in der FitnessHub! Danke, dass du der Community beigetreten bist',
       );
 
       return user;
