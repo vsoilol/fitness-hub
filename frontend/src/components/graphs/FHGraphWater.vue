@@ -28,7 +28,7 @@
         <FHGraphHead
           :timespan="0"
           :amount="today"
-          unitLong="Trinkometer"
+          unitLong="Счётчик выпитой воды"
           :showSpan="true"
         />
         <div class="progress">
@@ -82,7 +82,7 @@ export default class FHGraphWater extends Vue {
   get today(): number {
     if (!this.healthData) return 0;
     const today = this.healthData.filter(
-      x => x.date === new Date().setHours(0, 0, 0, 0)
+      x => x.date === new Date().setUTCHours(0, 0, 0, 0)
     )[0];
     if (today) return today.value;
     return 0;

@@ -21,7 +21,7 @@ export class ChartOptions {
         min: 10,
         tickAmount: 5,
         max: 40,
-        labels: { formatter: (value: string) => value + ' BMI' }
+        labels: { formatter: (value: string) => value + ' ИМТ' }
       },
       colors: ['#25ca49'],
       stroke: { lineCap: 'round', width: 4 },
@@ -48,7 +48,7 @@ export class ChartOptions {
               borderWidth: 0,
               text: 'Нормальный вес',
               position: 'left',
-              offsetX: 80,
+              offsetX: 100,
               offsetY: 50,
               style: {
                 fontSize: '14px',
@@ -79,9 +79,9 @@ export class ChartOptions {
       },
       yaxis: {
         opposite: true,
-        tickAmount: 0.1,
+        tickAmount: 5,
         forceNiceScale: true,
-        labels: { formatter: (value: string) => value + ' kg' }
+        labels: { formatter: (value: string) => value + ' кг' }
       },
       colors: ['#25ca49'],
       stroke: { lineCap: 'round', width: 4 },
@@ -113,10 +113,10 @@ export class ChartOptions {
       },
       yaxis: {
         opposite: true,
-        tickAmount: 1,
+        tickAmount: 5,
         min: 0,
         max: 10,
-        labels: { formatter: (value: string) => value + ' l' }
+        labels: { formatter: (value: string) => value + ' л' }
       },
       annotations: {
         yaxis: [
@@ -128,9 +128,9 @@ export class ChartOptions {
             opacity: 0.1,
             label: {
               borderWidth: 0,
-              text: 'Empfehlung',
+              text: 'Рекомендовано',
               position: 'left',
-              offsetX: 80,
+              offsetX: 100,
               style: {
                 fontSize: '14px',
                 fontWeight: 500,

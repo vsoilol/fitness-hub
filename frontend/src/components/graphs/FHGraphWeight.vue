@@ -24,8 +24,8 @@
       <FHGraphHead
         :timespan="selectedTime"
         :showSpan="true"
-        unitLong="Gewicht"
-        unitShort="kg"
+        unitLong="Вес"
+        unitShort="кг"
         :amount="amount || 0"
       />
       <VueApexCharts
@@ -109,7 +109,7 @@ export default class FHGraphWeight extends Vue {
         return { x: d.date, y: d.value };
       })
       .sort((a, b) => b.x - a.x);
-    return [{ name: 'Gewicht', data: data }];
+    return [{ name: 'Вес', data: data }];
   }
 
   get current(): number {

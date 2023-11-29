@@ -40,13 +40,13 @@
     <div content max-width>
       <tl-grid minWidth="120" gap="10">
         <div class="fh-graph-card" v-if="weight > 0">
-          <FHHeading subtitle="Вес" :title="weight + 'kg'" />
+          <FHHeading subtitle="Вес" :title="weight + 'кг'" />
         </div>
         <div class="fh-graph-card" v-if="height > 0">
-          <FHHeading subtitle="Размер" :title="height + 'cm'" />
+          <FHHeading subtitle="Размер" :title="height + 'см'" />
         </div>
         <div class="fh-graph-card" v-if="water !== -3">
-          <FHHeading subtitle="Дринкометр" :title="water + 'l'" />
+          <FHHeading subtitle="Счётчик выпитой воды" :title="water + 'л'" />
         </div>
         <div class="fh-graph-card" v-if="weight > 0 && height > 0">
           <FHHeading subtitle="ИМТ" :title="bmi" />

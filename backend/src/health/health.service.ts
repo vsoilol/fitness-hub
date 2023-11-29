@@ -100,7 +100,7 @@ export class HealthService {
    * @param amount number
    */
   public async addWater(userId: string, amount: number): Promise<IHealth> {
-    const date = new Date().setHours(0, 0, 0, 0);
+    const date = new Date().setUTCHours(0, 0, 0, 0);
     await this.healthModel.updateOne(
       { user: userId, type: HealthType.WATER, date: date },
       { $inc: { value: amount } },

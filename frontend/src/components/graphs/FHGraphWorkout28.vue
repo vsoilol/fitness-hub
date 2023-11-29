@@ -8,7 +8,7 @@
     <tc-divider :dark="$store.getters.darkmode" />
     <div class="workout-days">
       <div class="day" v-for="d in dayNames" :key="d">
-        {{ d.substring(0, 2) }}
+        {{ d.short }}
       </div>
     </div>
     <tc-divider :dark="$store.getters.darkmode" />
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { aDay, days, months } from '@/utils/constants';
+import { aDay, days, months, daysFull } from '@/utils/constants';
 import { TrainingStatistics } from '@/utils/Trainingstatistics';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import FHGraphHead from './FHGraphHead.vue';
@@ -47,9 +47,9 @@ export default class FHGraphWorkout28 extends Vue {
     return this.chartData || TrainingStatistics.getChartData();
   }
 
-  get dayNames(): string[] {
-    const dN = [...days];
-    dN.push(dN.shift() as string);
+  get dayNames(): { full: string; short: string }[] {
+    const dN = [...daysFull];
+    dN.push(dN.shift() as { full: string; short: string });
     return dN;
   }
 

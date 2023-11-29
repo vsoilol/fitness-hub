@@ -21,10 +21,10 @@ import FHHeading from '../FHHeading.vue';
 })
 export default class FHGraphHead extends Vue {
   @Prop({ default: 'Liter' }) unitLong!: string;
-  @Prop({ default: 'l' }) unitShort!: string;
+  @Prop({ default: 'л' }) unitShort!: string;
   @Prop({ default: 20 }) amount!: number;
   @Prop({ default: 1 }) timespan!: number;
-  @Prop({ default: 'durchschnitt' }) average!: string;
+  @Prop({ default: 'среднее' }) average!: string;
   @Prop({ default: false }) showSpan!: boolean;
   @Prop({ required: false }) description!: string;
 

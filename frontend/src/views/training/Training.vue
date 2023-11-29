@@ -1,11 +1,11 @@
 <template>
   <div class="view-Training" content>
     <div max-width>
-      <tl-grid minWidth="150" gap="10">
+      <tl-grid minWidth="280" gap="10">
         <FHButton icon="lens" title="Упражнение" routeName="search-exercise" />
         <FHButton
           icon="books"
-          title="Руководство по работе с мышцами"
+          title="Руководство по мышцам"
           routeName="muscle-guide"
         />
       </tl-grid>

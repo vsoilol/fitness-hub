@@ -10,7 +10,7 @@
 
       <br />
 
-      <router-link
+      <!-- <router-link
         :to="{ name: 'food-scanner' }"
         class="fh-graph-card food-scanner"
       >
@@ -18,7 +18,7 @@
           <img src="assets/food-scanner-logo.svg" alt="" />
           <FHHeading subtitle="Obst / Gemüse" title="Scanner" />
         </tl-flow>
-      </router-link>
+      </router-link> -->
 
       <br />
 

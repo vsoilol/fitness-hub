@@ -60,7 +60,7 @@
             asset="https://timos.s3.eu-central-1.amazonaws.com/drive/fitnesshub/3e5f7126-1dad-4894-8874-fd45e7b5342d.webp"
           />
           <FHSectionCardNormal
-            title="Дринкометр"
+            title="Счётчик выпитой воды"
             description="Оставайтесь увлажненными!"
             asset="https://timos.s3.eu-central-1.amazonaws.com/drive/fitnesshub/33e92901-df23-42df-ae38-7930f588fbe0.webp"
           />

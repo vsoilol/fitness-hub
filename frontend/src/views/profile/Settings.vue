@@ -57,7 +57,7 @@
               @input="val => toggleSetting(val, 'FRIENDS_SHARE_WEIGHT')"
             />
             <tc-list-item
-              title="Дринкометр"
+              title="Счётчик выпитой воды"
               icon="bucket"
               :value="isSettingEnabled('FRIENDS_SHARE_WATER')"
               @input="val => toggleSetting(val, 'FRIENDS_SHARE_WATER')"

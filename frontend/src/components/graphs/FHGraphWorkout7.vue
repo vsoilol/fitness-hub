@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { aDay, days } from '@/utils/constants';
+import { aDay, days, daysFull } from '@/utils/constants';
 import { TrainingStatistics } from '@/utils/Trainingstatistics';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import FHGraphHead from './FHGraphHead.vue';
@@ -48,7 +48,7 @@ export default class FHGraphWorkout7 extends Vue {
   }
 
   public dayName(date: Date) {
-    return days[date.getDay()].substring(0, 2);
+    return daysFull[date.getDay()].short;
   }
 }
 </script>

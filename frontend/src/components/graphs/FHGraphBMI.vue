@@ -25,7 +25,7 @@
         <FHGraphHead
           :timespan="selectedTime"
           :showSpan="true"
-          unitLong="BMI"
+          unitLong="ИМТ"
           unitShort=""
           :amount="amount || 0"
         />
@@ -116,7 +116,7 @@ export default class FHGraphBMI extends Vue {
         return { x: d.date, y: this.calcBMI(d.value) };
       })
       .sort((a, b) => b.x - a.x);
-    return [{ name: 'Gewicht', data: data }];
+    return [{ name: 'Вес', data: data }];
   }
 
   public calcBMI(value: number, height: number | null = this.height): number {
