@@ -386,11 +386,15 @@ export default class FHExeciseForm extends Vue {
   }
 
   public async createExercise(): Promise<void> {
-    this.dto.sets.min = Number(this.dto.sets.min);
-    this.dto.sets.max = Number(this.dto.sets.max);
+    if (this.dto.sets) {
+      this.dto.sets.min = Number(this.dto.sets.min);
+      this.dto.sets.max = Number(this.dto.sets.max);
+    }
 
-    this.dto.reps.min = Number(this.dto.reps.min);
-    this.dto.reps.max = Number(this.dto.reps.max);
+    if (this.dto.reps) {
+      this.dto.reps.min = Number(this.dto.reps.min);
+      this.dto.reps.max = Number(this.dto.reps.max);
+    }
 
     this.dto.time = Number(this.dto.time);
 
