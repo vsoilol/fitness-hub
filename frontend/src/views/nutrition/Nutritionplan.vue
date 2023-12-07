@@ -88,7 +88,7 @@
                       <div class="ingred-amount">
                         <i class="ti-list"></i>
                         <span>
-                          {{ plan[d][dt].ingredients.length }} Zutaten
+                          {{ plan[d][dt].ingredients.length }} Ингредиент
                         </span>
                       </div>
                       <tc-action :dark="$store.getters.darkmode">

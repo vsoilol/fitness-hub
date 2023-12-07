@@ -156,14 +156,15 @@ export default class FHNutritionplanForm extends Vue {
   public errorList = 'nutritionplan-form';
   public submitting = false;
   public plan: INutritionplan | null = null;
+
   public daysFull = [
-    { full: 'Понедельник', short: 'Пн' },
-    { full: 'Вторник', short: 'Вт' },
-    { full: 'Среда', short: 'Ср' },
-    { full: 'Четверг', short: 'Чт' },
-    { full: 'Пятница', short: 'Пт' },
-    { full: 'Суббота', short: 'Сб' },
-    { full: 'Воскресенье', short: 'Вс' }
+    { full: 'Понедельник', short: 'Пн', value: 'monday' },
+    { full: 'Вторник', short: 'Вт', value: 'tuesday' },
+    { full: 'Среда', short: 'Ср', value: 'wednesday' },
+    { full: 'Четверг', short: 'Чт', value: 'thursday' },
+    { full: 'Пятница', short: 'Пт', value: 'friday' },
+    { full: 'Суббота', short: 'Сб', value: 'saturday' },
+    { full: 'Воскресенье', short: 'Вс', value: 'sunday' }
   ];
   public daytimes = {
     breakfast: 'Завтрак',
@@ -181,6 +182,7 @@ export default class FHNutritionplanForm extends Vue {
         }
       });
     }
+
     if (this.$store.getters.nutritionplanForm) {
       this.plan = this.$store.getters.nutritionplanForm;
     } else if (this.existingPlan) {
@@ -210,7 +212,8 @@ export default class FHNutritionplanForm extends Vue {
 
   getRecipe(daytime: daytime): IRecipe | null {
     if (!this.plan) return null;
-    const day = this.daysFull[this.day].full.toLowerCase();
+    const day = this.daysFull[this.day].value.toLowerCase();
+
     for (const [key, value] of Object.entries(this.plan)) {
       if (key === day) {
         for (const [dt, r] of Object.entries(value)) {
@@ -220,12 +223,15 @@ export default class FHNutritionplanForm extends Vue {
         }
       }
     }
+
     return null;
   }
 
   get snacks(): IRecipe[] {
     if (!this.plan) return [];
-    const day = this.daysFull[this.day].full.toLowerCase();
+
+    const day = this.daysFull[this.day].value.toLowerCase();
+
     for (const [key, value] of Object.entries(this.plan)) {
       if (key === day) {
         for (const [dt, r] of Object.entries(value)) {
@@ -235,21 +241,23 @@ export default class FHNutritionplanForm extends Vue {
         }
       }
     }
+
     return [];
   }
 
   public removeSnack(index: number) {
     if (!this.plan) return;
 
-    const day = this.daysFull[this.day].full.toLowerCase();
+    const day = this.daysFull[this.day].value.toLowerCase();
     // eslint-disable-next-line
     (this.plan as any)[day].snacks.splice(index, 1);
   }
 
   public updateRecipe(daytime: daytime): void {
     this.$store.commit('nutritionplanForm', this.plan);
+
     openFullscreen('np-recipe-search', {
-      day: this.daysFull[this.day].full.toLowerCase(),
+      day: this.daysFull[this.day].value.toLowerCase(),
       daytime
     });
   }

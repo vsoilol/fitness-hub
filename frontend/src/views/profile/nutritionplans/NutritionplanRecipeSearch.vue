@@ -73,7 +73,11 @@ export default class NutritionplanRecipeSearch extends Vue {
     const day = this.day;
     const daytime = this.daytime;
     // eslint-disable-next-line
+
     const plan = { ...this.plan } as any;
+    console.log(plan);
+    console.log(day);
+    console.log(daytime);
     if (!day || !daytime || !plan) {
       this.close();
       return;
@@ -86,6 +90,7 @@ export default class NutritionplanRecipeSearch extends Vue {
     } else {
       plan[day][daytime] = recipe;
     }
+
     this.$store.commit('nutritionplanForm', plan);
     this.close();
   }
