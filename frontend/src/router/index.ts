@@ -636,8 +636,8 @@ const router = new VueRouter({
           name: 'muscle-exercises',
           component: () => import('@/views/training/Muscle.vue'),
           meta: {
-            title: prefix + 'Muskel',
-            hero: 'Muskel'
+            title: prefix + 'Мышцы',
+            hero: 'Мышцы'
           }
         },
         {
@@ -645,9 +645,9 @@ const router = new VueRouter({
           name: 'exercise-search-results',
           component: () => import('@/components/FHSearchResults.vue'),
           meta: {
-            title: prefix + 'Suchergebnisse',
-            hero: 'Suchergebnisse',
-            backTitle: 'Suche',
+            title: prefix + 'Результаты поиска',
+            hero: 'Результаты поиска',
+            backTitle: 'Поиск',
             backRoute: 'search-exercise'
           }
         },
