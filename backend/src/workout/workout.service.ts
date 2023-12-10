@@ -25,9 +25,7 @@ export class WorkoutService {
    * @param user author
    */
   public async getWorkouts(user: IUser): Promise<IWorkout[]> {
-    const workouts: Workout[] = await this.workoutModel.find({
-      author: user._id,
-    });
+    const workouts: Workout[] = await this.workoutModel.find();
 
     return await this.mapWorkouts(workouts);
   }
