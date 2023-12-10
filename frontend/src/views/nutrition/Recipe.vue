@@ -5,7 +5,12 @@
     </FHHeader>
     <FHSwipeable @swipeDown="$cFS('nutrition')">
       <tc-hero :dark="$store.getters.darkmode">
-        <img v-if="recipe" :src="recipe.thumbnail" slot="background" />
+        <img
+          v-if="recipe"
+          :src="recipe.thumbnail"
+          style="object-fit: contain;"
+          slot="background"
+        />
         <tl-flow v-else-if="!error" flow="column">
           <tc-spinner
             variant="dots-spin"

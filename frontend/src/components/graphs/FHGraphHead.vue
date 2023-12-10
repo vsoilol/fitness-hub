@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { aDay, aWeek, aYear, days, months } from '@/utils/constants';
+import { aDay, aWeek, aYear, daysFull, months } from '@/utils/constants';
 import { formatTimeForMessage } from '@/utils/functions';
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import FHHeading from '../FHHeading.vue';
@@ -33,15 +33,17 @@ export default class FHGraphHead extends Vue {
   // transforms seconds or timestamp to Date
   get timespanText(): string {
     const date: Date = new Date();
-    const wday = days[date.getDay()].substring(0, 2);
+    const wday = daysFull[date.getDay()].short;
     const day = date.getDate();
     const month = months[date.getMonth()];
     const year = date.getFullYear();
 
     const now = `${wday}, ${day}. ${month} ${year}`;
+
     if (this.timespan === 0) {
       return now;
     }
+
     const span = formatTimeForMessage(
       date.getTime() - this.multis[this.timespan]
     );

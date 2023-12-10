@@ -2,7 +2,7 @@ import router from '@/router';
 import store from '@/store';
 import { Route } from 'vue-router';
 import { Dictionary } from 'vue-router/types/router';
-import { anHour, backendURL, days } from './constants';
+import { anHour, backendURL, days, daysFull } from './constants';
 import { FHEventBus } from './FHEventbus';
 import { IExercise, INutritionplan, IRecipe, IWorkout } from './interfaces';
 import { NotificationManagement } from './NotificationManagement';
@@ -38,6 +38,7 @@ export function formatDate(time: any): string {
     default:
       time = +new Date();
   }
+
   const time_formats = [
     [60, 'seconds', 1], // 60
     [120, '1 minute ago', '1 minute from now'], // 60*2
@@ -55,6 +56,7 @@ export function formatDate(time: any): string {
     [5806080000, 'Last century', 'Next century'], // 60*60*24*7*4*12*100*2
     [58060800000, 'centuries', 2903040000] // 60*60*24*7*4*12*100*20, 60*60*24*7*4*12*100
   ];
+
   let seconds = (+new Date() - time) / 1000,
     token = 'ago',
     list_choice = 1;
@@ -62,13 +64,16 @@ export function formatDate(time: any): string {
   if (seconds == 0) {
     return 'Just now';
   }
+
   if (seconds < 0) {
     seconds = Math.abs(seconds);
     token = 'from now';
     list_choice = 2;
   }
+
   let i = 0,
     format;
+
   while ((format = time_formats[i++]))
     if (seconds < format[0]) {
       if (typeof format[2] == 'string') return (format as any)[list_choice];
@@ -83,18 +88,20 @@ export function formatDate(time: any): string {
  * @param timestamp number
  */
 export function formatTimeForMessage(timestamp: number): string {
-  if (new Date().getTime() - timestamp < 3 * anHour)
+  if (new Date().getTime() - timestamp < 3 * anHour) {
     return formatDate(timestamp);
+  }
+
   return (
-    days[new Date(timestamp).getDay()].substring(0, 2) +
-    ' ' +
+    daysFull[new Date(timestamp).getDay()].short +
+    ', ' +
     [
       { day: 'numeric' },
       { month: 'short' },
       { hour: 'numeric', hour12: false },
       { minute: 'numeric' }
     ]
-      .map(x => new Intl.DateTimeFormat('en-US', x).format(timestamp))
+      .map(x => new Intl.DateTimeFormat('ru-RU', x).format(timestamp))
       .map(
         (x, i) =>
           (i === 3 ? (+x < 10 ? '0' + x : x) : x) +

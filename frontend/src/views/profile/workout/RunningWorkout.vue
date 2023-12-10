@@ -3,7 +3,11 @@
     <FHAppear>
       <div :key="index" v-if="dataLoaded">
         <tc-hero :key="index" :dark="$store.getters.darkmode">
-          <img :src="exercises[index].thumbnail" slot="background" />
+          <img
+            :src="exercises[index].thumbnail"
+            style="object-fit: contain;"
+            slot="background"
+          />
         </tc-hero>
       </div>
     </FHAppear>
